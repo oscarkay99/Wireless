@@ -335,44 +335,41 @@ export function initChatbot() {
     }
     #cw-send:hover { background: oklch(var(--primary-700)); }
     @media (max-width: 480px) {
+      /* Widget: compact button at bottom-right, never spans full width */
       #cw-widget {
-        left: 0;
-        right: 0;
-        bottom: 0;
+        left: auto;
+        right: 1rem;
+        bottom: 1.5rem;
       }
-      #cw-toggle {
-        margin-left: 0;
-      }
-      #cw-header {
-        border-bottom: 1px solid rgba(255,255,255,0.15);
-      }
-      #cw-launcher {
-        justify-content: flex-end;
-        padding-right: 1rem;
-        padding-bottom: calc(1rem + env(safe-area-inset-bottom));
-      }
-      body.cw-chat-open {
-        overflow: hidden;
-      }
-      body.cw-chat-open #cw-widget {
-        top: 0;
-      }
-      body.cw-chat-open #cw-launcher {
+      /* Hide the label pill — no room on mobile */
+      #cw-label {
         display: none;
       }
-      body.cw-chat-open #cw-window.is-open {
-        position: static;
-        width: 100%;
-        height: 100%;
-        max-height: none;
+      /* Chat window: bottom sheet, reliable on iOS Safari */
+      #cw-window.is-open {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        width: auto;
+        height: 88svh;
+        max-height: 88svh;
         margin: 0;
-        border-radius: 0;
-        border: none;
+        border-radius: 20px 20px 0 0;
+        border-left: none;
+        border-right: none;
+        border-bottom: none;
+        z-index: 10000;
+      }
+      #cw-header {
+        border-radius: 20px 20px 0 0;
+        border-bottom: 1px solid rgba(255,255,255,0.15);
       }
       #cw-messages {
-        padding: 0.85rem;
         min-height: 0;
+        padding: 0.85rem;
       }
+      /* Quick replies scroll horizontally — no wrapping */
       #cw-quick-replies {
         flex-wrap: nowrap;
         overflow-x: auto;
@@ -380,8 +377,13 @@ export function initChatbot() {
         padding: 0 0.75rem 0.6rem;
       }
       #cw-quick-replies::-webkit-scrollbar { display: none; }
+      /* Input row clears the iOS home indicator */
       #cw-input-row {
         padding: 0.65rem 0.65rem calc(0.75rem + env(safe-area-inset-bottom));
+      }
+      /* Hide launch button while sheet is open */
+      body.cw-chat-open #cw-launcher {
+        display: none;
       }
     }
   `;
