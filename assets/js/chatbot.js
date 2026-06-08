@@ -335,41 +335,30 @@ export function initChatbot() {
     }
     #cw-send:hover { background: oklch(var(--primary-700)); }
     @media (max-width: 480px) {
-      /* Widget: compact button at bottom-right, never spans full width */
+      /* Compact button at bottom-right */
       #cw-widget {
         left: auto;
         right: 1rem;
         bottom: 1.5rem;
       }
-      /* Hide the label pill — no room on mobile */
+      /* No room for the label pill on mobile */
       #cw-label {
         display: none;
       }
-      /* Chat window: bottom sheet, reliable on iOS Safari */
+      /* Floating card above the toggle button */
       #cw-window.is-open {
         position: fixed;
-        bottom: 0;
-        left: 0;
-        right: 0;
+        bottom: 5.5rem;
+        left: 1rem;
+        right: 1rem;
         width: auto;
-        height: 60svh;
         max-height: 60svh;
         margin: 0;
-        border-radius: 20px 20px 0 0;
-        border-left: none;
-        border-right: none;
-        border-bottom: none;
         z-index: 10000;
-      }
-      #cw-header {
-        border-radius: 20px 20px 0 0;
-        border-bottom: 1px solid rgba(255,255,255,0.15);
       }
       #cw-messages {
         min-height: 0;
-        padding: 0.85rem;
       }
-      /* Quick replies scroll horizontally — no wrapping */
       #cw-quick-replies {
         flex-wrap: nowrap;
         overflow-x: auto;
@@ -377,13 +366,8 @@ export function initChatbot() {
         padding: 0 0.75rem 0.6rem;
       }
       #cw-quick-replies::-webkit-scrollbar { display: none; }
-      /* Input row clears the iOS home indicator */
       #cw-input-row {
-        padding: 0.65rem 0.65rem calc(0.75rem + env(safe-area-inset-bottom));
-      }
-      /* Hide launch button while sheet is open */
-      body.cw-chat-open #cw-launcher {
-        display: none;
+        padding: 0.65rem;
       }
     }
   `;
@@ -446,7 +430,6 @@ export function initChatbot() {
   function openChat() {
     opened = true;
     window_.classList.add('is-open');
-    document.body.classList.add('cw-chat-open');
     openIcon.style.display = 'none';
     closeIcon.style.display = '';
     badge.style.display = 'none';
@@ -471,7 +454,6 @@ export function initChatbot() {
   function closeChat() {
     opened = false;
     window_.classList.remove('is-open');
-    document.body.classList.remove('cw-chat-open');
     openIcon.style.display = '';
     closeIcon.style.display = 'none';
   }
