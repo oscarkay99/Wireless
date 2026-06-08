@@ -38,10 +38,10 @@
     .gate-error { font-size: 0.78rem; color: #ff6666; margin-bottom: 0.6rem; display: none; }
     .gate-error.visible { display: block; }
     .gate-btn {
-      width: 100%; background: #CC0000; color: #fff; font-weight: 600; font-size: 0.875rem;
+      width: 100%; background: oklch(var(--primary-500)); color: #fff; font-weight: 600; font-size: 0.875rem;
       padding: 0.75rem; border: none; border-radius: 8px; cursor: pointer; font-family: inherit;
     }
-    .gate-btn:hover { background: #aa0000; }
+    .gate-btn:hover { background: oklch(var(--primary-700)); }
 
     /* ── Dashboard ── */
     #dashboard { display: none; min-height: 100vh; }
@@ -79,7 +79,7 @@
     }
     .stat-label { font-size: 0.75rem; color: rgba(255,255,255,0.4); font-weight: 500; margin-bottom: 0.4rem; }
     .stat-val { font-size: 1.8rem; font-weight: 700; color: #fff; line-height: 1; }
-    .stat-val.red { color: #CC0000; }
+    .stat-val.red { color: oklch(var(--primary-500)); }
 
     .section-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1rem; }
     .section-title { font-size: 0.95rem; font-weight: 600; color: #fff; }
@@ -110,7 +110,7 @@
     td.muted { color: rgba(255,255,255,0.35); }
 
     .avatar-cell { display: flex; align-items: center; gap: 0.65rem; }
-    .av { width: 30px; height: 30px; border-radius: 50%; background: #CC0000; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; font-weight: 700; color: #fff; flex-shrink: 0; }
+    .av { width: 30px; height: 30px; border-radius: 50%; background: oklch(var(--primary-500)); display: flex; align-items: center; justify-content: center; font-size: 0.7rem; font-weight: 700; color: #fff; flex-shrink: 0; }
 
     #empty-state { display: none; padding: 3rem 1rem; text-align: center; color: rgba(255,255,255,0.3); }
     #empty-state i { font-size: 2rem; margin-bottom: 0.75rem; display: block; }

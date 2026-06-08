@@ -59,7 +59,7 @@
       margin-bottom: 1.25rem;
     }
     .pl-heading { font-size: 2.1rem; font-weight: 700; color: #fff; line-height: 1.18; letter-spacing: -0.02em; margin-bottom: 0.75rem; }
-    .pl-heading span { color: #CC0000; }
+    .pl-heading span { color: oklch(var(--primary-500)); }
     .pl-sub { font-size: 0.9rem; color: rgba(255,255,255,0.5); line-height: 1.6; margin-bottom: 2rem; }
 
     .pl-benefits { display: flex; flex-direction: column; gap: 0.9rem; }
@@ -68,7 +68,7 @@
       width: 36px; height: 36px; border-radius: 9px;
       background: rgba(204,0,0,0.12); border: 1px solid rgba(204,0,0,0.2);
       display: flex; align-items: center; justify-content: center;
-      font-size: 1rem; color: #CC0000; flex-shrink: 0;
+      font-size: 1rem; color: oklch(var(--primary-500)); flex-shrink: 0;
     }
     .pl-benefit-text { font-size: 0.875rem; color: rgba(255,255,255,0.8); font-weight: 500; }
 
@@ -79,10 +79,10 @@
     }
     .pl-quote-text { font-size: 0.85rem; color: rgba(255,255,255,0.7); line-height: 1.6; font-style: italic; margin-bottom: 0.75rem; }
     .pl-quote-author { display: flex; align-items: center; gap: 0.5rem; }
-    .pl-quote-avatar { width: 28px; height: 28px; border-radius: 50%; background: #CC0000; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; font-weight: 700; color: #fff; }
+    .pl-quote-avatar { width: 28px; height: 28px; border-radius: 50%; background: oklch(var(--primary-500)); display: flex; align-items: center; justify-content: center; font-size: 0.7rem; font-weight: 700; color: #fff; }
     .pl-quote-name { font-size: 0.78rem; font-weight: 600; color: #fff; }
     .pl-quote-role { font-size: 0.72rem; color: rgba(255,255,255,0.4); }
-    .pl-stars { color: #CC0000; font-size: 0.75rem; margin-bottom: 0.4rem; }
+    .pl-stars { color: oklch(var(--primary-500)); font-size: 0.75rem; margin-bottom: 0.4rem; }
 
     /* ── Right panel (form) ── */
     .panel-right {
@@ -98,7 +98,7 @@
     .form-card { width: 100%; max-width: 440px; }
     .form-card h1 { font-size: 1.65rem; font-weight: 700; color: #fff; letter-spacing: -0.02em; margin-bottom: 0.35rem; }
     .form-card .form-sub { font-size: 0.875rem; color: rgba(255,255,255,0.45); margin-bottom: 2rem; }
-    .form-card .form-sub a { color: #CC0000; text-decoration: none; font-weight: 500; }
+    .form-card .form-sub a { color: oklch(var(--primary-500)); text-decoration: none; font-weight: 500; }
 
     /* mobile logo */
     .mobile-logo { display: flex; align-items: center; gap: 0.5rem; text-decoration: none; margin-bottom: 2rem; }
@@ -139,13 +139,13 @@
     .form-error.visible { display: flex; }
 
     .btn-submit {
-      width: 100%; background: #CC0000; color: #fff; font-weight: 700;
+      width: 100%; background: oklch(var(--primary-500)); color: #fff; font-weight: 700;
       font-size: 0.925rem; padding: 0.85rem; border: none; border-radius: 8px;
       cursor: pointer; font-family: inherit; transition: background 0.15s;
       display: flex; align-items: center; justify-content: center; gap: 0.5rem;
       margin-top: 0.5rem;
     }
-    .btn-submit:hover { background: #aa0000; }
+    .btn-submit:hover { background: oklch(var(--primary-700)); }
     .btn-submit:disabled { opacity: 0.6; cursor: not-allowed; }
 
     .form-divider { display: flex; align-items: center; gap: 0.75rem; margin: 1.25rem 0; }
@@ -261,7 +261,7 @@
         </button>
       </form>
 
-      <p class="terms">By creating an account you agree to our <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>.</p>
+      <p class="terms">By creating an account you agree to our <a href="./terms.html">Terms of Service</a> and <a href="./privacy.html">Privacy Policy</a>.</p>
     </div>
   </div>
 

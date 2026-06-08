@@ -122,12 +122,12 @@ export function initChatbot() {
       transform: translateX(0);
     }
     #cw-label i {
-      color: #CC0000;
+      color: oklch(var(--primary-500));
       font-style: normal;
     }
     #cw-title-badge {
       display: inline-block;
-      background: #CC0000;
+      background: oklch(var(--primary-500));
       color: #fff;
       font-size: 0.6rem;
       font-weight: 700;
@@ -143,7 +143,7 @@ export function initChatbot() {
       width: 56px;
       height: 56px;
       border-radius: 50%;
-      background: #CC0000;
+      background: oklch(var(--primary-500));
       border: none;
       cursor: pointer;
       color: #fff;
@@ -156,7 +156,7 @@ export function initChatbot() {
       position: relative;
       margin-left: auto;
     }
-    #cw-toggle:hover { background: #aa0000; transform: scale(1.06); }
+    #cw-toggle:hover { background: oklch(var(--primary-700)); transform: scale(1.06); }
     #cw-badge {
       position: absolute;
       top: -3px;
@@ -164,14 +164,14 @@ export function initChatbot() {
       width: 18px;
       height: 18px;
       background: #fff;
-      color: #CC0000;
+      color: oklch(var(--primary-500));
       border-radius: 50%;
       font-size: 11px;
       font-weight: 700;
       display: flex;
       align-items: center;
       justify-content: center;
-      border: 2px solid #CC0000;
+      border: 2px solid oklch(var(--primary-500));
     }
     #cw-window {
       display: none;
@@ -198,7 +198,7 @@ export function initChatbot() {
       width: 38px;
       height: 38px;
       border-radius: 50%;
-      background: #CC0000;
+      background: oklch(var(--primary-500));
       color: #fff;
       display: flex;
       align-items: center;
@@ -255,7 +255,7 @@ export function initChatbot() {
       align-self: flex-start;
     }
     .cw-msg.user {
-      background: #CC0000;
+      background: oklch(var(--primary-500));
       color: #fff;
       border-bottom-right-radius: 4px;
       align-self: flex-end;
@@ -322,7 +322,7 @@ export function initChatbot() {
       width: 34px;
       height: 34px;
       border-radius: 50%;
-      background: #CC0000;
+      background: oklch(var(--primary-500));
       border: none;
       color: #fff;
       cursor: pointer;
@@ -333,7 +333,7 @@ export function initChatbot() {
       flex-shrink: 0;
       transition: background 0.15s;
     }
-    #cw-send:hover { background: #aa0000; }
+    #cw-send:hover { background: oklch(var(--primary-700)); }
     @media (max-width: 480px) {
       #cw-window { width: calc(100vw - 2rem); }
       #cw-widget { right: 1rem; bottom: 5rem; }

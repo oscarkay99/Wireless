@@ -103,7 +103,7 @@ function _desktopHeader(user) {
     pill.style.cssText = 'position:relative;';
     pill.innerHTML = `
       <button id="_hpill" style="display:flex;align-items:center;gap:0.45rem;background:rgba(255,255,255,0.09);border:1px solid rgba(255,255,255,0.13);border-radius:9999px;padding:0.28rem 0.75rem 0.28rem 0.3rem;cursor:pointer;color:#fff;font-size:0.82rem;font-weight:500;line-height:1;transition:background 0.15s;" onmouseover="this.style.background='rgba(255,255,255,0.14)'" onmouseout="this.style.background='rgba(255,255,255,0.09)'">
-        <span style="width:26px;height:26px;border-radius:50%;background:#CC0000;display:flex;align-items:center;justify-content:center;font-size:0.72rem;font-weight:700;flex-shrink:0;">${user.firstName[0].toUpperCase()}</span>
+        <span style="width:26px;height:26px;border-radius:50%;background:oklch(var(--primary-500));display:flex;align-items:center;justify-content:center;font-size:0.72rem;font-weight:700;flex-shrink:0;">${user.firstName[0].toUpperCase()}</span>
         <span>${user.firstName}</span>
         <i class="ph ph-caret-down" style="opacity:0.6;font-size:0.9rem;"></i>
       </button>
@@ -113,10 +113,10 @@ function _desktopHeader(user) {
           <div style="font-size:0.72rem;color:rgba(255,255,255,0.4);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${user.email}</div>
         </div>
         <a href="./contact.html" style="display:flex;align-items:center;gap:0.55rem;padding:0.48rem 0.8rem;color:rgba(255,255,255,0.85);font-size:0.82rem;border-radius:7px;text-decoration:none;" onmouseover="this.style.background='rgba(255,255,255,0.07)'" onmouseout="this.style.background=''">
-          <i class="ph ph-wrench" style="color:#CC0000;font-size:0.88rem;"></i>Book a Repair
+          <i class="ph ph-wrench" style="color:oklch(var(--primary-500));font-size:0.88rem;"></i>Book a Repair
         </a>
         <button id="_hlogout" style="display:flex;align-items:center;gap:0.55rem;padding:0.48rem 0.8rem;color:rgba(255,255,255,0.85);font-size:0.82rem;border-radius:7px;width:100%;background:none;border:none;cursor:pointer;text-align:left;" onmouseover="this.style.background='rgba(255,255,255,0.07)'" onmouseout="this.style.background=''">
-          <i class="ph ph-sign-out" style="color:#CC0000;font-size:0.88rem;"></i>Sign Out
+          <i class="ph ph-sign-out" style="color:oklch(var(--primary-500));font-size:0.88rem;"></i>Sign Out
         </button>
       </div>`;
     btn.replaceWith(pill);
@@ -136,8 +136,8 @@ function _desktopHeader(user) {
     const wrap = document.createElement('div');
     wrap.style.cssText = 'display:flex;align-items:center;gap:0.65rem;';
     wrap.innerHTML = `
-      <a href="./login.html" style="font-size:0.875rem;font-weight:500;color:rgba(255,255,255,0.75);text-decoration:none;white-space:nowrap;" onmouseover="this.style.color='#CC0000'" onmouseout="this.style.color='rgba(255,255,255,0.75)'">Login</a>
-      <a href="./signup.html" style="background:#CC0000;color:#fff;font-size:0.875rem;font-weight:600;padding:0.5rem 1.25rem;border-radius:0.375rem;text-decoration:none;white-space:nowrap;transition:background 0.15s;" onmouseover="this.style.background='#aa0000'" onmouseout="this.style.background='#CC0000'">Sign Up Free</a>`;
+      <a href="./login.html" style="font-size:0.875rem;font-weight:500;color:rgba(255,255,255,0.75);text-decoration:none;white-space:nowrap;" onmouseover="this.style.color='oklch(var(--primary-500))'" onmouseout="this.style.color='rgba(255,255,255,0.75)'">Login</a>
+      <a href="./signup.html" style="background:oklch(var(--primary-500));color:#fff;font-size:0.875rem;font-weight:600;padding:0.5rem 1.25rem;border-radius:0.375rem;text-decoration:none;white-space:nowrap;transition:background 0.15s;" onmouseover="this.style.background='oklch(var(--primary-700))'" onmouseout="this.style.background='oklch(var(--primary-500))'">Sign Up Free</a>`;
     btn.replaceWith(wrap);
   }
 }
@@ -162,16 +162,17 @@ function _signupBanner(user) {
   if (['signup.html', 'login.html', 'admin.html'].includes(page)) return;
   if (sessionStorage.getItem('wl_banner')) return;
 
+  const header = document.querySelector('header');
+  if (!header) return;
   const b = document.createElement('div');
   b.id = 'auth-signup-banner';
-  const headerH = (document.querySelector('header') || {}).offsetHeight || 64;
-  b.style.cssText = `position:fixed;top:${headerH}px;left:0;right:0;z-index:48;background:#CC0000;color:#fff;display:flex;align-items:center;justify-content:center;gap:0.6rem;padding:0.5rem 1rem;font-size:0.8rem;font-weight:500;box-shadow:0 2px 10px rgba(0,0,0,0.2);flex-wrap:wrap;`;
+  b.style.cssText = `background:oklch(var(--primary-500));color:#fff;display:flex;align-items:center;justify-content:center;gap:0.6rem;padding:0.45rem 1rem;font-size:0.8rem;font-weight:500;flex-wrap:wrap;border-top:1px solid rgba(255,255,255,0.12);`;
   b.innerHTML = `
     <i class="ph ph-user-circle" style="flex-shrink:0;font-size:1rem;"></i>
     <span>Create a free account to book, track your repair live &amp; get member deals.</span>
     <a href="./signup.html" style="color:#fff;font-weight:700;text-decoration:underline;white-space:nowrap;flex-shrink:0;">Join Free →</a>
     <button id="_bx" aria-label="Dismiss" style="background:none;border:none;color:#fff;cursor:pointer;margin-left:auto;padding:0 0.2rem;font-size:1.1rem;opacity:0.8;flex-shrink:0;"><i class="ph ph-x"></i></button>`;
-  document.body.appendChild(b);
+  header.appendChild(b);
   b.querySelector('#_bx').onclick = () => {
     b.remove();
     sessionStorage.setItem('wl_banner', '1');
@@ -200,18 +201,25 @@ function _handleContactPage(user) {
   const form = document.getElementById('wireless-book-form');
   if (!form) return;
 
+  const subtitle = document.getElementById('form-subtitle');
+  if (subtitle) {
+    subtitle.textContent = user
+      ? 'Fill in the details below and your repair is booked instantly. No waiting, no back-and-forth.'
+      : 'Sign in or create a free account, then book your repair instantly, any time.';
+  }
+
   if (!user) {
     form.style.cssText += ';position:relative;overflow:hidden;border-radius:0.75rem;';
     const overlay = document.createElement('div');
-    overlay.style.cssText = 'position:absolute;inset:0;background:rgba(255,255,255,0.94);backdrop-filter:blur(4px);z-index:20;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.1rem;padding:2rem;';
+    overlay.style.cssText = 'position:absolute;inset:0;background:rgba(255,255,255,0.94);backdrop-filter:blur(4px);z-index:20;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;gap:1.1rem;padding:2.5rem 2rem 2rem;';
     overlay.innerHTML = `
-      <div style="width:60px;height:60px;border-radius:50%;background:#CC0000;display:flex;align-items:center;justify-content:center;font-size:1.6rem;color:#fff;"><i class="ph ph-lock"></i></div>
+      <div style="width:60px;height:60px;border-radius:50%;background:oklch(var(--primary-500));display:flex;align-items:center;justify-content:center;font-size:1.6rem;color:#fff;"><i class="ph ph-lock"></i></div>
       <div style="text-align:center;max-width:300px;">
         <div style="font-size:1.05rem;font-weight:700;color:#0a0a0a;margin-bottom:0.4rem;">Sign in to book online</div>
         <div style="font-size:0.84rem;color:#555;line-height:1.55;">Create your free Wireless account to access online booking, live repair tracking, and exclusive member pricing.</div>
       </div>
       <div style="display:flex;flex-direction:column;gap:0.6rem;width:100%;max-width:280px;">
-        <a href="./signup.html?next=booking" style="background:#CC0000;color:#fff;font-weight:600;padding:0.75rem 1rem;border-radius:0.375rem;text-decoration:none;text-align:center;font-size:0.9rem;transition:background 0.15s;" onmouseover="this.style.background='#aa0000'" onmouseout="this.style.background='#CC0000'">Create Free Account</a>
+        <a href="./signup.html?next=booking" style="background:oklch(var(--primary-500));color:#fff;font-weight:600;padding:0.75rem 1rem;border-radius:0.375rem;text-decoration:none;text-align:center;font-size:0.9rem;transition:background 0.15s;" onmouseover="this.style.background='oklch(var(--primary-700))'" onmouseout="this.style.background='oklch(var(--primary-500))'">Create Free Account</a>
         <a href="./login.html?next=booking" style="background:#0a0a0a;color:#fff;font-weight:500;padding:0.75rem 1rem;border-radius:0.375rem;text-decoration:none;text-align:center;font-size:0.9rem;transition:background 0.15s;" onmouseover="this.style.background='#222'" onmouseout="this.style.background='#0a0a0a'">I already have an account</a>
       </div>`;
     form.appendChild(overlay);
