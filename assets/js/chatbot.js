@@ -335,8 +335,25 @@ export function initChatbot() {
     }
     #cw-send:hover { background: oklch(var(--primary-700)); }
     @media (max-width: 480px) {
-      #cw-window { width: calc(100vw - 2rem); }
-      #cw-widget { right: 1rem; bottom: 5rem; }
+      #cw-widget {
+        left: 1rem;
+        right: 1rem;
+        bottom: 1rem;
+      }
+      #cw-launcher {
+        justify-content: flex-end;
+      }
+      #cw-window {
+        width: min(100%, calc(100vw - 2rem));
+        max-height: calc(100vh - 6.5rem);
+        margin-bottom: 0.75rem;
+      }
+      #cw-messages {
+        padding: 0.85rem;
+      }
+      #cw-input-row {
+        padding: 0.65rem;
+      }
     }
   `;
 
