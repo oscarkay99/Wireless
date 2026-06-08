@@ -336,23 +336,30 @@ export function initChatbot() {
     #cw-send:hover { background: oklch(var(--primary-700)); }
     @media (max-width: 480px) {
       #cw-widget {
-        left: 1rem;
-        right: 1rem;
-        bottom: 1rem;
+        left: 0;
+        right: 0;
+        bottom: 0;
       }
       #cw-launcher {
         justify-content: flex-end;
+        padding-right: 1rem;
+        padding-bottom: calc(1rem + env(safe-area-inset-bottom));
       }
       #cw-window {
-        width: min(100%, calc(100vw - 2rem));
-        max-height: calc(100vh - 6.5rem);
-        margin-bottom: 0.75rem;
+        width: 100vw;
+        height: calc(100dvh - 1rem - env(safe-area-inset-top));
+        max-height: calc(100dvh - 1rem - env(safe-area-inset-top));
+        margin-bottom: 0;
+        border-radius: 18px 18px 0 0;
+        border-left: none;
+        border-right: none;
+        border-bottom: none;
       }
       #cw-messages {
         padding: 0.85rem;
       }
       #cw-input-row {
-        padding: 0.65rem;
+        padding: 0.65rem 0.65rem calc(0.65rem + env(safe-area-inset-bottom));
       }
     }
   `;
