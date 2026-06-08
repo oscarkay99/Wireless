@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create Account — Wireless</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css">
+  <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/fill/style.css">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; font-family: Inter, ui-sans-serif, system-ui, sans-serif; }
+
+    body { display: flex; min-height: 100vh; background: #0a0a0a; }
+
+    /* ── Left panel ── */
+    .panel-left {
+      display: none;
+      flex-direction: column;
+      justify-content: space-between;
+      width: 42%;
+      min-width: 380px;
+      background: #0a0a0a;
+      padding: 2.5rem 3rem;
+      position: relative;
+      overflow: hidden;
+    }
+    @media (min-width: 900px) { .panel-left { display: flex; } }
+
+    .panel-left::before {
+      content: '';
+      position: absolute;
+      top: -120px; right: -120px;
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, rgba(204,0,0,0.18) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .panel-left::after {
+      content: '';
+      position: absolute;
+      bottom: -80px; left: -80px;
+      width: 320px; height: 320px;
+      background: radial-gradient(circle, rgba(204,0,0,0.1) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .pl-logo { display: flex; align-items: center; gap: 0.6rem; text-decoration: none; }
+    .pl-logo img { height: 38px; width: auto; }
+    .pl-logo span { font-weight: 700; font-size: 1.3rem; letter-spacing: -0.03em; color: #fff; text-transform: lowercase; }
+
+    .pl-body { position: relative; z-index: 1; }
+    .pl-tag {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      background: rgba(204,0,0,0.15); border: 1px solid rgba(204,0,0,0.3);
+      color: #ff4444; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em;
+      text-transform: uppercase; padding: 0.3rem 0.75rem; border-radius: 9999px;
+      margin-bottom: 1.25rem;
+    }
+    .pl-heading { font-size: 2.1rem; font-weight: 700; color: #fff; line-height: 1.18; letter-spacing: -0.02em; margin-bottom: 0.75rem; }
+    .pl-heading span { color: #CC0000; }
+    .pl-sub { font-size: 0.9rem; color: rgba(255,255,255,0.5); line-height: 1.6; margin-bottom: 2rem; }
+
+    .pl-benefits { display: flex; flex-direction: column; gap: 0.9rem; }
+    .pl-benefit { display: flex; align-items: center; gap: 0.75rem; }
+    .pl-benefit-icon {
+      width: 36px; height: 36px; border-radius: 9px;
+      background: rgba(204,0,0,0.12); border: 1px solid rgba(204,0,0,0.2);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem; color: #CC0000; flex-shrink: 0;
+    }
+    .pl-benefit-text { font-size: 0.875rem; color: rgba(255,255,255,0.8); font-weight: 500; }
+
+    .pl-quote {
+      position: relative; z-index: 1;
+      background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 12px; padding: 1.1rem 1.25rem;
+    }
+    .pl-quote-text { font-size: 0.85rem; color: rgba(255,255,255,0.7); line-height: 1.6; font-style: italic; margin-bottom: 0.75rem; }
+    .pl-quote-author { display: flex; align-items: center; gap: 0.5rem; }
+    .pl-quote-avatar { width: 28px; height: 28px; border-radius: 50%; background: #CC0000; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; font-weight: 700; color: #fff; }
+    .pl-quote-name { font-size: 0.78rem; font-weight: 600; color: #fff; }
+    .pl-quote-role { font-size: 0.72rem; color: rgba(255,255,255,0.4); }
+    .pl-stars { color: #CC0000; font-size: 0.75rem; margin-bottom: 0.4rem; }
+
+    /* ── Right panel (form) ── */
+    .panel-right {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1.5rem;
+      background: #0f0f0f;
+      border-left: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .form-card { width: 100%; max-width: 440px; }
+    .form-card h1 { font-size: 1.65rem; font-weight: 700; color: #fff; letter-spacing: -0.02em; margin-bottom: 0.35rem; }
+    .form-card .form-sub { font-size: 0.875rem; color: rgba(255,255,255,0.45); margin-bottom: 2rem; }
+    .form-card .form-sub a { color: #CC0000; text-decoration: none; font-weight: 500; }
+
+    /* mobile logo */
+    .mobile-logo { display: flex; align-items: center; gap: 0.5rem; text-decoration: none; margin-bottom: 2rem; }
+    .mobile-logo img { height: 34px; }
+    .mobile-logo span { font-weight: 700; font-size: 1.2rem; color: #fff; text-transform: lowercase; letter-spacing: -0.03em; }
+    @media (min-width: 900px) { .mobile-logo { display: none; } }
+
+    .form-row { display: flex; gap: 0.75rem; }
+    .form-row .form-group { flex: 1; }
+
+    .form-group { margin-bottom: 1rem; }
+    .form-group label {
+      display: block; font-size: 0.8rem; font-weight: 600;
+      color: rgba(255,255,255,0.65); margin-bottom: 0.4rem; letter-spacing: 0.01em;
+    }
+    .form-group input {
+      width: 100%; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 8px; padding: 0.7rem 0.9rem; color: #fff; font-size: 0.875rem;
+      font-family: inherit; outline: none; transition: border-color 0.15s;
+    }
+    .form-group input:focus { border-color: rgba(204,0,0,0.55); }
+    .form-group input::placeholder { color: rgba(255,255,255,0.25); }
+
+    .pw-wrap { position: relative; }
+    .pw-wrap input { padding-right: 2.5rem; }
+    .pw-toggle {
+      position: absolute; right: 0.75rem; top: 50%; transform: translateY(-50%);
+      background: none; border: none; cursor: pointer; color: rgba(255,255,255,0.35);
+      font-size: 1.05rem; padding: 0; display: flex; align-items: center;
+    }
+    .pw-toggle:hover { color: rgba(255,255,255,0.7); }
+
+    .form-error {
+      display: none; background: rgba(204,0,0,0.1); border: 1px solid rgba(204,0,0,0.3);
+      color: #ff6666; font-size: 0.8rem; padding: 0.6rem 0.85rem; border-radius: 7px;
+      margin-bottom: 1rem; align-items: center; gap: 0.5rem;
+    }
+    .form-error.visible { display: flex; }
+
+    .btn-submit {
+      width: 100%; background: #CC0000; color: #fff; font-weight: 700;
+      font-size: 0.925rem; padding: 0.85rem; border: none; border-radius: 8px;
+      cursor: pointer; font-family: inherit; transition: background 0.15s;
+      display: flex; align-items: center; justify-content: center; gap: 0.5rem;
+      margin-top: 0.5rem;
+    }
+    .btn-submit:hover { background: #aa0000; }
+    .btn-submit:disabled { opacity: 0.6; cursor: not-allowed; }
+
+    .form-divider { display: flex; align-items: center; gap: 0.75rem; margin: 1.25rem 0; }
+    .form-divider hr { flex: 1; border: none; border-top: 1px solid rgba(255,255,255,0.08); }
+    .form-divider span { font-size: 0.75rem; color: rgba(255,255,255,0.3); white-space: nowrap; }
+
+    .terms { font-size: 0.75rem; color: rgba(255,255,255,0.3); text-align: center; margin-top: 1rem; line-height: 1.5; }
+    .terms a { color: rgba(255,255,255,0.5); }
+  </style>
+</head>
+<body>
+
+  <div class="panel-left">
+    <a href="./index.html" class="pl-logo">
+      <img src="./assets/images/logo-mark.png" alt="">
+      <span>wireless</span>
+    </a>
+
+    <div class="pl-body">
+      <div class="pl-tag"><i class="ph ph-shield-check"></i> Free to join</div>
+      <h1 class="pl-heading">Your device.<br>Our <span>commitment.</span></h1>
+      <p class="pl-sub">Join thousands of customers who trust Wireless for fast, expert repairs with real-time tracking.</p>
+
+      <div class="pl-benefits">
+        <div class="pl-benefit">
+          <div class="pl-benefit-icon"><i class="ph ph-broadcast"></i></div>
+          <span class="pl-benefit-text">Live repair tracking with photo updates</span>
+        </div>
+        <div class="pl-benefit">
+          <div class="pl-benefit-icon"><i class="ph ph-lightning"></i></div>
+          <span class="pl-benefit-text">Priority booking — skip the wait</span>
+        </div>
+        <div class="pl-benefit">
+          <div class="pl-benefit-icon"><i class="ph ph-tag"></i></div>
+          <span class="pl-benefit-text">Exclusive member-only discounts</span>
+        </div>
+        <div class="pl-benefit">
+          <div class="pl-benefit-icon"><i class="ph ph-clock-counter-clockwise"></i></div>
+          <span class="pl-benefit-text">Full repair history on every device</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="pl-quote">
+      <div class="pl-stars">★★★★★</div>
+      <p class="pl-quote-text">"Signed up, booked same day, screen fixed in under an hour. The live photos were a nice touch — I knew exactly what was happening."</p>
+      <div class="pl-quote-author">
+        <div class="pl-quote-avatar">S</div>
+        <div>
+          <div class="pl-quote-name">Sarah M.</div>
+          <div class="pl-quote-role">iPhone 15 Pro screen repair</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel-right">
+    <div class="form-card">
+
+      <a href="./index.html" class="mobile-logo">
+        <img src="./assets/images/logo-mark.png" alt="">
+        <span>wireless</span>
+      </a>
+
+      <h1>Create your account</h1>
+      <p class="form-sub">Already have one? <a href="./login.html">Sign in →</a></p>
+
+      <div class="form-error" id="signup-error">
+        <i class="ph ph-warning-circle"></i>
+        <span id="signup-error-msg"></span>
+      </div>
+
+      <form id="signup-form" novalidate>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="firstName">First name</label>
+            <input id="firstName" name="firstName" type="text" placeholder="John" autocomplete="given-name" required>
+          </div>
+          <div class="form-group">
+            <label for="lastName">Last name</label>
+            <input id="lastName" name="lastName" type="text" placeholder="Doe" autocomplete="family-name" required>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email address</label>
+          <input id="email" name="email" type="email" placeholder="john@example.com" autocomplete="email" required>
+        </div>
+
+        <div class="form-group">
+          <label for="phone">Phone number</label>
+          <input id="phone" name="phone" type="tel" placeholder="(555) 000-0000" autocomplete="tel" required>
+        </div>
+
+        <div class="form-group">
+          <label for="password">Password</label>
+          <div class="pw-wrap">
+            <input id="password" name="password" type="password" placeholder="Min. 8 characters" autocomplete="new-password" required>
+            <button type="button" class="pw-toggle" id="pw-toggle-1" aria-label="Toggle password"><i class="ph ph-eye" id="pw-icon-1"></i></button>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="confirmPassword">Confirm password</label>
+          <div class="pw-wrap">
+            <input id="confirmPassword" name="confirmPassword" type="password" placeholder="Repeat password" autocomplete="new-password" required>
+            <button type="button" class="pw-toggle" id="pw-toggle-2" aria-label="Toggle confirm password"><i class="ph ph-eye" id="pw-icon-2"></i></button>
+          </div>
+        </div>
+
+        <button type="submit" class="btn-submit" id="signup-btn">
+          <i class="ph ph-user-plus"></i> Create Account
+        </button>
+      </form>
+
+      <p class="terms">By creating an account you agree to our <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>.</p>
+    </div>
+  </div>
+
+<script type="module">
+  import { signup } from './assets/js/auth.js';
+
+  // Password toggles
+  document.getElementById('pw-toggle-1').addEventListener('click', () => {
+    const inp = document.getElementById('password');
+    const icon = document.getElementById('pw-icon-1');
+    const show = inp.type === 'password';
+    inp.type = show ? 'text' : 'password';
+    icon.className = show ? 'ph ph-eye-slash' : 'ph ph-eye';
+  });
+  document.getElementById('pw-toggle-2').addEventListener('click', () => {
+    const inp = document.getElementById('confirmPassword');
+    const icon = document.getElementById('pw-icon-2');
+    const show = inp.type === 'password';
+    inp.type = show ? 'text' : 'password';
+    icon.className = show ? 'ph ph-eye-slash' : 'ph ph-eye';
+  });
+
+  const form    = document.getElementById('signup-form');
+  const errBox  = document.getElementById('signup-error');
+  const errMsg  = document.getElementById('signup-error-msg');
+  const btn     = document.getElementById('signup-btn');
+
+  function showError(msg) {
+    errMsg.textContent = msg;
+    errBox.classList.add('visible');
+  }
+  function clearError() { errBox.classList.remove('visible'); }
+
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    clearError();
+
+    const firstName = form.firstName.value.trim();
+    const lastName  = form.lastName.value.trim();
+    const email     = form.email.value.trim();
+    const phone     = form.phone.value.trim();
+    const password  = form.password.value;
+    const confirm   = form.confirmPassword.value;
+
+    if (!firstName || !lastName || !email || !phone || !password)
+      return showError('Please fill in all fields.');
+    if (password.length < 8)
+      return showError('Password must be at least 8 characters.');
+    if (password !== confirm)
+      return showError('Passwords do not match.');
+
+    btn.disabled = true;
+    btn.innerHTML = '<i class="ph ph-circle-notch"></i> Creating account…';
+
+    const result = signup({ firstName, lastName, email, phone, password });
+
+    if (result.error) {
+      btn.disabled = false;
+      btn.innerHTML = '<i class="ph ph-user-plus"></i> Create Account';
+      return showError(result.error);
+    }
+
+    // Redirect: back to booking or home
+    const params = new URLSearchParams(location.search);
+    const next = sessionStorage.getItem('wl_next');
+    sessionStorage.removeItem('wl_next');
+    location.href = (params.get('next') === 'booking' || next) ? './contact.html' : './index.html';
+  });
+</script>
+</body>
+</html>

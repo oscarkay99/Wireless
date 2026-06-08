@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Book a Repair — Wireless Device Repair</title>
+  <meta name="description" content="Book your device repair online or walk in. Free diagnostic, same-day service available. iPhone, MacBook, Samsung, iPad, iWatch, and AirPods.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Pacifico&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css">
+  <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/fill/style.css">
+  <link rel="stylesheet" href="./assets/css/styles.css">
+  <link rel="stylesheet" href="./assets/css/animations.css">
+</head>
+<body>
+
+<!-- Mobile Menu -->
+<div id="mobile-menu" style="display:none;position:fixed;inset:0;z-index:60;background:oklch(var(--background-50));flex-direction:column;">
+  <div style="display:flex;align-items:center;justify-content:space-between;padding:0 1rem;height:4rem;border-bottom:1px solid oklch(var(--background-200)/.7);">
+    <a href="./index.html" class="brand-logo cursor-pointer" aria-label="Wireless">
+      <img src="./assets/images/logo-mark.png" alt="" style="height:42px;width:auto;display:block;flex-shrink:0;"><span style="font-family:ui-sans-serif,system-ui,sans-serif;font-weight:700;font-size:1.35rem;letter-spacing:-0.03em;color:#ffffff;text-transform:lowercase;line-height:1;">wireless</span>
+    </a>
+    <button id="mobile-menu-close" type="button" class="w-10 h-10 flex items-center justify-center rounded-md cursor-pointer text-foreground-950 hover:bg-background-100" aria-label="Close menu">
+      <i class="text-2xl ph ph-x"></i>
+    </button>
+  </div>
+  <nav style="display:flex;flex-direction:column;padding:1.5rem 1rem;gap:0.25rem;">
+    <a href="./index.html" class="text-lg font-medium py-3 px-4 rounded-lg text-foreground-900 hover:bg-background-100">Home</a>
+    <a href="./services.html" class="text-lg font-medium py-3 px-4 rounded-lg text-foreground-900 hover:bg-background-100">Services</a>
+    <a href="./about.html" class="text-lg font-medium py-3 px-4 rounded-lg text-foreground-900 hover:bg-background-100">About</a>
+    <a href="./contact.html" class="text-lg font-medium py-3 px-4 rounded-lg text-primary-600 bg-primary-100/30">Contact</a>
+  </nav>
+  <div style="padding:0 1rem;display:flex;flex-direction:column;gap:0.75rem;">
+    <a href="tel:+233200039371" class="flex items-center gap-2 text-sm text-foreground-700 py-3 px-4 rounded-lg border border-background-200">
+      <i class="ph ph-phone text-primary-500"></i>+233 20 003 9371
+    </a>
+    <a id="mobile-book-btn" href="#book" class="bg-primary-500 hover:bg-primary-600 text-background-50 font-semibold px-7 py-3.5 rounded-md text-sm text-center transition-colors">Book a Repair</a>
+  </div>
+</div>
+
+<div class="bg-background-50 text-foreground-950 min-h-screen">
+
+  <!-- HEADER -->
+  <header class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b" style="background:rgba(10,10,10,0.96);border-color:rgba(255,255,255,0.08);backdrop-filter:blur(12px);">
+    <div class="mx-auto flex h-16 md:h-20 items-center justify-between px-4 md:px-8">
+      <a href="./index.html" class="brand-logo cursor-pointer" aria-label="Wireless">
+        <img src="./assets/images/logo-mark.png" alt="" style="height:42px;width:auto;display:block;flex-shrink:0;"><span style="font-family:ui-sans-serif,system-ui,sans-serif;font-weight:700;font-size:1.35rem;letter-spacing:-0.03em;color:#ffffff;text-transform:lowercase;line-height:1;">wireless</span>
+      </a>
+      <nav class="hidden md:flex items-center gap-8">
+        <a href="./index.html" class="text-sm font-medium cursor-pointer whitespace-nowrap transition-colors" style="color:rgba(255,255,255,0.75);" onmouseover="this.style.color='#CC0000'" onmouseout="this.style.color='rgba(255,255,255,0.75)'">Home</a>
+        <a href="./services.html" class="text-sm font-medium cursor-pointer whitespace-nowrap transition-colors" style="color:rgba(255,255,255,0.75);" onmouseover="this.style.color='#CC0000'" onmouseout="this.style.color='rgba(255,255,255,0.75)'">Services</a>
+        <a href="./services.html" class="text-sm font-medium cursor-pointer whitespace-nowrap transition-colors" style="color:rgba(255,255,255,0.75);" onmouseover="this.style.color='#CC0000'" onmouseout="this.style.color='rgba(255,255,255,0.75)'">Products</a>
+        <a href="./about.html" class="text-sm font-medium cursor-pointer whitespace-nowrap transition-colors" style="color:rgba(255,255,255,0.75);" onmouseover="this.style.color='#CC0000'" onmouseout="this.style.color='rgba(255,255,255,0.75)'">About</a>
+        <a href="./contact.html" class="text-sm font-medium cursor-pointer whitespace-nowrap transition-colors text-primary-600">Contact<span class="block h-0.5 mt-1 bg-primary-500"></span></a>
+      </nav>
+      <div class="hidden md:flex items-center gap-3">
+        <a href="tel:+233200039371" class="text-sm font-medium whitespace-nowrap cursor-pointer" style="color:rgba(255,255,255,0.75);"><i class="ph ph-phone mr-1"></i>+233 20 003 9371</a>
+        <a id="header-book-btn" href="#book" class="bg-primary-500 hover:bg-primary-600 text-background-50 text-sm font-medium px-5 py-2.5 rounded-md whitespace-nowrap cursor-pointer transition-colors">Book a Repair</a>
+      </div>
+      <button id="mobile-menu-btn" type="button" class="md:hidden w-10 h-10 flex items-center justify-center rounded-md cursor-pointer" style="color:#fff;" aria-label="Toggle menu">
+        <i class="text-2xl ph ph-list"></i>
+      </button>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- PAGE HERO -->
+    <section class="relative bg-foreground-950 overflow-hidden" style="padding-top:10rem;padding-bottom:5rem;">
+      <div class="absolute inset-0 bg-cover bg-center" style="background-image:url('./assets/images/hero-bg.jpg');opacity:0.12;"></div>
+      <div class="absolute inset-0 bg-gradient-to-b from-foreground-950/80 to-foreground-950/95"></div>
+      <div class="relative z-10 mx-auto max-w-7xl px-4 md:px-8">
+        <div class="animate-fade-up max-w-3xl">
+          <div class="flex items-center gap-2 mb-5">
+            <a href="./index.html" class="text-[11px] font-medium tracking-wider text-background-100/50 hover:text-background-100/80 transition-colors uppercase">Home</a>
+            <i class="ph ph-caret-right text-background-100/30 text-xs"></i>
+            <span class="text-[11px] font-medium tracking-wider text-primary-400 uppercase">Contact</span>
+          </div>
+          <h1 class="font-heading text-4xl md:text-6xl font-semibold text-background-50 leading-[1.08] tracking-tight">Book Your<br><span class="text-primary-400 italic">Repair</span></h1>
+          <p class="mt-5 text-background-100/70 text-sm md:text-base max-w-xl leading-relaxed">Schedule online in under two minutes. Free diagnostic, transparent quote, no obligation to proceed. Most repairs are ready the same day.</p>
+          <div class="mt-7 grid grid-cols-1 sm:grid-cols-3 gap-3 max-w-lg">
+            <div class="flex items-center gap-2 text-background-100/70 text-sm"><i class="ph-fill ph-check-circle text-primary-400"></i>₵200 Diagnostic</div>
+            <div class="flex items-center gap-2 text-background-100/70 text-sm"><i class="ph-fill ph-check-circle text-primary-400"></i>No Hidden Fees</div>
+            <div class="flex items-center gap-2 text-background-100/70 text-sm"><i class="ph-fill ph-check-circle text-primary-400"></i>Lifetime Warranty</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BOOKING + SIDEBAR -->
+    <section id="book" class="bg-background-100/60 border-b border-background-200/70">
+      <div class="mx-auto max-w-7xl px-4 md:px-8 py-14 md:py-20">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12">
+
+          <!-- BOOKING FORM -->
+          <div class="lg:col-span-2 reveal-left">
+            <div class="bg-background-50 rounded-2xl border border-background-200/70 p-6 md:p-8">
+              <div class="mb-7">
+                <h2 class="font-heading text-2xl md:text-3xl font-semibold text-foreground-950">Schedule Your Repair</h2>
+                <p class="mt-2 text-sm text-foreground-700">Fill in the details below and we'll confirm your booking by SMS or email.</p>
+              </div>
+
+              <form id="wireless-book-form" novalidate class="space-y-6">
+
+                <!-- Device -->
+                <div>
+                  <label class="block text-sm font-semibold text-foreground-900 mb-3">Select Your Device <span class="text-primary-500">*</span></label>
+                  <input type="hidden" name="device">
+                  <div id="device-buttons" class="flex flex-wrap gap-2">
+                    <button type="button" class="px-4 py-2.5 rounded-lg border text-sm font-medium cursor-pointer transition-all duration-200 bg-background-50 text-foreground-700 border-background-300 hover:border-primary-400">
+                      <i class="ph ph-device-mobile mr-1.5"></i>iPhone
+                    </button>
+                    <button type="button" class="px-4 py-2.5 rounded-lg border text-sm font-medium cursor-pointer transition-all duration-200 bg-background-50 text-foreground-700 border-background-300 hover:border-primary-400">
+                      <i class="ph ph-laptop mr-1.5"></i>MacBook
+                    </button>
+                    <button type="button" class="px-4 py-2.5 rounded-lg border text-sm font-medium cursor-pointer transition-all duration-200 bg-background-50 text-foreground-700 border-background-300 hover:border-primary-400">
+                      <i class="ph ph-clock mr-1.5"></i>iWatch
+                    </button>
+                    <button type="button" class="px-4 py-2.5 rounded-lg border text-sm font-medium cursor-pointer transition-all duration-200 bg-background-50 text-foreground-700 border-background-300 hover:border-primary-400">
+                      <i class="ph ph-headphones mr-1.5"></i>AirPods
+                    </button>
+                    <button type="button" class="px-4 py-2.5 rounded-lg border text-sm font-medium cursor-pointer transition-all duration-200 bg-background-50 text-foreground-700 border-background-300 hover:border-primary-400">
+                      <i class="ph ph-device-tablet mr-1.5"></i>iPad
+                    </button>
+                    <button type="button" class="px-4 py-2.5 rounded-lg border text-sm font-medium cursor-pointer transition-all duration-200 bg-background-50 text-foreground-700 border-background-300 hover:border-primary-400">
+                      <i class="ph ph-device-mobile mr-1.5"></i>Samsung
+                    </button>
+                  </div>
+                </div>
+
+                <!-- Issue Type -->
+                <div>
+                  <label class="block text-sm font-semibold text-foreground-900 mb-3">Issue Type <span class="text-primary-500">*</span></label>
+                  <input type="hidden" name="issue_type">
+                  <div id="issue-buttons" class="flex flex-wrap gap-2">
+                    <button type="button" class="px-4 py-2.5 rounded-lg border text-sm font-medium cursor-pointer transition-all duration-200 bg-background-50 text-foreground-700 border-background-300 hover:border-secondary-400">
+                      Screen Damage
+                    </button>
+                    <button type="button" class="px-4 py-2.5 rounded-lg border text-sm font-medium cursor-pointer transition-all duration-200 bg-background-50 text-foreground-700 border-background-300 hover:border-secondary-400">
+                      Battery Issue
+                    </button>
+                    <button type="button" class="px-4 py-2.5 rounded-lg border text-sm font-medium cursor-pointer transition-all duration-200 bg-background-50 text-foreground-700 border-background-300 hover:border-secondary-400">
+                      Water Damage
+                    </button>
+                    <button type="button" class="px-4 py-2.5 rounded-lg border text-sm font-medium cursor-pointer transition-all duration-200 bg-background-50 text-foreground-700 border-background-300 hover:border-secondary-400">
+                      Camera Fault
+                    </button>
+                    <button type="button" class="px-4 py-2.5 rounded-lg border text-sm font-medium cursor-pointer transition-all duration-200 bg-background-50 text-foreground-700 border-background-300 hover:border-secondary-400">
+                      Charging Problem
+                    </button>
+                    <button type="button" class="px-4 py-2.5 rounded-lg border text-sm font-medium cursor-pointer transition-all duration-200 bg-background-50 text-foreground-700 border-background-300 hover:border-secondary-400">
+                      Speaker / Mic
+                    </button>
+                    <button type="button" class="px-4 py-2.5 rounded-lg border text-sm font-medium cursor-pointer transition-all duration-200 bg-background-50 text-foreground-700 border-background-300 hover:border-secondary-400">
+                      Software Issue
+                    </button>
+                    <button type="button" class="px-4 py-2.5 rounded-lg border text-sm font-medium cursor-pointer transition-all duration-200 bg-background-50 text-foreground-700 border-background-300 hover:border-secondary-400">
+                      Other
+                    </button>
+                  </div>
+                </div>
+
+                <!-- Name + Phone -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                  <div>
+                    <label for="customer-name" class="block text-sm font-semibold text-foreground-900 mb-2">Full Name <span class="text-primary-500">*</span></label>
+                    <input type="text" id="customer-name" name="customer_name" required placeholder="Alex Johnson" class="w-full border border-background-300 bg-background-100/60 text-foreground-950 text-sm rounded-lg px-4 py-3 outline-none focus:border-primary-500 focus:ring-2 focus:ring-primary-200 transition-all placeholder:text-foreground-400">
+                  </div>
+                  <div>
+                    <label for="customer-phone" class="block text-sm font-semibold text-foreground-900 mb-2">Phone Number <span class="text-primary-500">*</span></label>
+                    <input type="tel" id="customer-phone" name="customer_phone" required placeholder="(555) 000-0000" class="w-full border border-background-300 bg-background-100/60 text-foreground-950 text-sm rounded-lg px-4 py-3 outline-none focus:border-primary-500 focus:ring-2 focus:ring-primary-200 transition-all placeholder:text-foreground-400">
+                  </div>
+                </div>
+
+                <!-- Email -->
+                <div>
+                  <label for="customer-email" class="block text-sm font-semibold text-foreground-900 mb-2">Email Address <span class="text-primary-500">*</span></label>
+                  <input type="email" id="customer-email" name="customer_email" required placeholder="alex@example.com" class="w-full border border-background-300 bg-background-100/60 text-foreground-950 text-sm rounded-lg px-4 py-3 outline-none focus:border-primary-500 focus:ring-2 focus:ring-primary-200 transition-all placeholder:text-foreground-400">
+                </div>
+
+                <!-- Preferred Date -->
+                <div>
+                  <label for="preferred-date" class="block text-sm font-semibold text-foreground-900 mb-2">Preferred Date</label>
+                  <input type="date" id="preferred-date" name="preferred_date" class="w-full border border-background-300 bg-background-100/60 text-foreground-950 text-sm rounded-lg px-4 py-3 outline-none focus:border-primary-500 focus:ring-2 focus:ring-primary-200 transition-all">
+                </div>
+
+                <!-- Message -->
+                <div>
+                  <label for="message" class="block text-sm font-semibold text-foreground-900 mb-2">Describe the Issue <span class="text-foreground-500 font-normal">(optional)</span></label>
+                  <textarea id="message" name="message" rows="4" placeholder="Any extra details, how it happened, what you've already tried, model number, etc." class="w-full border border-background-300 bg-background-100/60 text-foreground-950 text-sm rounded-lg px-4 py-3 outline-none focus:border-primary-500 focus:ring-2 focus:ring-primary-200 transition-all resize-none placeholder:text-foreground-400"></textarea>
+                </div>
+
+                <!-- Trust note -->
+                <p class="text-xs text-foreground-500 leading-relaxed">By submitting you agree to our Privacy Policy. We never share your data with third parties. We'll confirm your booking via SMS or email within 15 minutes during business hours.</p>
+
+                <!-- Submit -->
+                <button id="submit-btn" type="submit" class="w-full bg-primary-500 hover:bg-primary-600 disabled:opacity-60 text-background-50 font-semibold py-4 px-6 rounded-lg text-sm md:text-base transition-colors cursor-pointer inline-flex items-center justify-center gap-2">
+                  Schedule Your Repair <i class="ph ph-arrow-right"></i>
+                </button>
+
+              </form>
+            </div>
+          </div>
+
+          <!-- CONTACT SIDEBAR -->
+          <div class="flex flex-col gap-5 reveal-right">
+
+            <!-- Contact Info -->
+            <div class="bg-background-50 rounded-2xl border border-background-200/70 p-6">
+              <h3 class="font-heading text-lg font-semibold text-foreground-950 mb-5">Contact Information</h3>
+              <ul class="space-y-5 text-sm">
+                <li class="flex items-start gap-4">
+                  <span class="w-10 h-10 rounded-lg bg-primary-100 text-primary-600 flex items-center justify-center flex-shrink-0"><i class="ph ph-map-pin text-lg"></i></span>
+                  <div>
+                    <p class="font-semibold text-foreground-900 mb-0.5">Location</p>
+                    <p class="text-foreground-700 leading-relaxed">17 Jungle Avenue<br>East Legon, Accra, Ghana</p>
+                  </div>
+                </li>
+                <li class="flex items-start gap-4">
+                  <span class="w-10 h-10 rounded-lg bg-primary-100 text-primary-600 flex items-center justify-center flex-shrink-0"><i class="ph ph-phone text-lg"></i></span>
+                  <div>
+                    <p class="font-semibold text-foreground-900 mb-0.5">Phone</p>
+                    <a href="tel:+233200039371" class="text-foreground-700 hover:text-primary-600 transition-colors">+233 20 003 9371</a>
+                  </div>
+                </li>
+                <li class="flex items-start gap-4">
+                  <span class="w-10 h-10 rounded-lg bg-primary-100 text-primary-600 flex items-center justify-center flex-shrink-0"><i class="ph ph-envelope text-lg"></i></span>
+                  <div>
+                    <p class="font-semibold text-foreground-900 mb-0.5">Email</p>
+                    <a href="mailto:hello@wirelessgh.com" class="text-foreground-700 hover:text-primary-600 transition-colors">hello@wirelessgh.com</a>
+                  </div>
+                </li>
+                <li class="flex items-start gap-4">
+                  <span class="w-10 h-10 rounded-lg bg-primary-100 text-primary-600 flex items-center justify-center flex-shrink-0"><i class="ph ph-clock text-lg"></i></span>
+                  <div>
+                    <p class="font-semibold text-foreground-900 mb-1">Hours</p>
+                    <p class="text-foreground-700 leading-loose">Mon – Fri: 9:00 AM – 7:00 PM<br>Saturday: 10:00 AM – 5:00 PM<br>Sunday: Closed</p>
+                  </div>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Quick Links -->
+            <div class="bg-background-50 rounded-2xl border border-background-200/70 p-6">
+              <h3 class="font-heading text-base font-semibold text-foreground-950 mb-4">What to Expect</h3>
+              <ul class="space-y-3">
+                <li class="flex items-start gap-3 text-sm text-foreground-700">
+                  <i class="ph-fill ph-check-circle text-primary-500 mt-0.5 flex-shrink-0"></i>
+                  <span>₵200 diagnostic, full report before any work starts</span>
+                </li>
+                <li class="flex items-start gap-3 text-sm text-foreground-700">
+                  <i class="ph-fill ph-check-circle text-primary-500 mt-0.5 flex-shrink-0"></i>
+                  <span>Fixed quote, no hidden fees or surprise charges</span>
+                </li>
+                <li class="flex items-start gap-3 text-sm text-foreground-700">
+                  <i class="ph-fill ph-check-circle text-primary-500 mt-0.5 flex-shrink-0"></i>
+                  <span>Photo updates at every stage via SMS or email</span>
+                </li>
+                <li class="flex items-start gap-3 text-sm text-foreground-700">
+                  <i class="ph-fill ph-check-circle text-primary-500 mt-0.5 flex-shrink-0"></i>
+                  <span>90% of repairs completed same day</span>
+                </li>
+                <li class="flex items-start gap-3 text-sm text-foreground-700">
+                  <i class="ph-fill ph-check-circle text-primary-500 mt-0.5 flex-shrink-0"></i>
+                  <span>Lifetime warranty on all parts and labor</span>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Rating -->
+            <div class="bg-primary-500 rounded-2xl p-6 text-background-50">
+              <div class="flex items-center gap-2 mb-2">
+                <div class="flex gap-0.5 text-amber-300">
+                  <i class="ph-fill ph-star text-sm"></i><i class="ph-fill ph-star text-sm"></i><i class="ph-fill ph-star text-sm"></i><i class="ph-fill ph-star text-sm"></i><i class="ph-fill ph-star text-sm"></i>
+                </div>
+                <span class="text-background-50/90 text-xs font-medium">4.9 / 5.0</span>
+              </div>
+              <p class="text-background-50/90 text-sm leading-relaxed">"Wireless fixed my iPhone in 40 minutes. Honest pricing, photo updates, and the screen is perfect. Best repair shop in the city."</p>
+              <p class="mt-3 text-background-50/60 text-xs font-medium">— James L. · Google Review</p>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MAP PLACEHOLDER -->
+    <section class="bg-background-50 border-b border-background-200/70 reveal-up">
+      <div class="mx-auto max-w-7xl px-4 md:px-8 py-12 md:py-16">
+        <h2 class="font-heading text-xl md:text-2xl font-semibold text-foreground-950 mb-6">Find Us</h2>
+        <div class="rounded-2xl overflow-hidden border border-background-200/70 bg-background-100/60 h-72 md:h-96 flex flex-col items-center justify-center gap-4 text-foreground-500">
+          <i class="ph ph-map-trifold text-5xl text-background-300"></i>
+          <div class="text-center">
+            <p class="text-sm font-medium text-foreground-700">17 Jungle Avenue</p>
+            <p class="text-sm text-foreground-600">East Legon, Accra, Ghana</p>
+            <a href="https://maps.google.com/?q=742+Innovation+Drive+San+Francisco+CA" target="_blank" rel="noopener noreferrer" class="mt-3 inline-flex items-center gap-1.5 text-xs font-medium text-primary-600 hover:text-primary-700 transition-colors"><i class="ph ph-arrow-square-out"></i> Open in Google Maps</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-secondary-900 text-secondary-100">
+    <div class="mx-auto max-w-7xl px-4 md:px-8 py-14 md:py-20">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+        <div>
+          <a href="./index.html" class="brand-logo cursor-pointer" aria-label="Wireless">
+            <img src="./assets/images/logo-mark.png" alt="" style="height:42px;width:auto;display:block;flex-shrink:0;"><span style="font-family:ui-sans-serif,system-ui,sans-serif;font-weight:700;font-size:1.35rem;letter-spacing:-0.03em;color:#ffffff;text-transform:lowercase;line-height:1;">wireless</span>
+          </a>
+          <p class="mt-4 text-sm leading-relaxed text-secondary-200 max-w-xs">Premium device repair with certified technicians, genuine parts, and lifetime warranty. Your trusted repair partner since 2018.</p>
+          <div class="mt-5 flex items-center gap-2">
+            <a href="#" class="w-9 h-9 rounded-md bg-secondary-800 hover:bg-primary-500 text-secondary-100 hover:text-background-50 flex items-center justify-center transition-colors" aria-label="Instagram"><i class="ph ph-instagram-logo"></i></a>
+            <a href="#" class="w-9 h-9 rounded-md bg-secondary-800 hover:bg-primary-500 text-secondary-100 hover:text-background-50 flex items-center justify-center transition-colors" aria-label="Facebook"><i class="ph-fill ph-facebook-logo"></i></a>
+            <a href="#" class="w-9 h-9 rounded-md bg-secondary-800 hover:bg-primary-500 text-secondary-100 hover:text-background-50 flex items-center justify-center transition-colors" aria-label="Twitter/X"><i class="ph ph-x-logo"></i></a>
+            <a href="#" class="w-9 h-9 rounded-md bg-secondary-800 hover:bg-primary-500 text-secondary-100 hover:text-background-50 flex items-center justify-center transition-colors" aria-label="YouTube"><i class="ph-fill ph-youtube-logo"></i></a>
+          </div>
+        </div>
+        <div>
+          <h4 class="text-background-50 font-semibold text-sm tracking-wide uppercase">Quick Links</h4>
+          <ul class="mt-5 space-y-3">
+            <li><a href="./index.html" class="text-sm text-secondary-200 hover:text-primary-300">Home</a></li>
+            <li><a href="./services.html" class="text-sm text-secondary-200 hover:text-primary-300">Services</a></li>
+            <li><a href="./services.html" class="text-sm text-secondary-200 hover:text-primary-300">Products</a></li>
+            <li><a href="./about.html" class="text-sm text-secondary-200 hover:text-primary-300">About</a></li>
+            <li><a href="./contact.html" class="text-sm text-secondary-200 hover:text-primary-300">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="text-background-50 font-semibold text-sm tracking-wide uppercase">Repair Services</h4>
+          <ul class="mt-5 space-y-3">
+            <li><a href="./services.html" class="text-sm text-secondary-200 hover:text-primary-300">iPhone Repair</a></li>
+            <li><a href="./services.html" class="text-sm text-secondary-200 hover:text-primary-300">MacBook Repair</a></li>
+            <li><a href="./services.html" class="text-sm text-secondary-200 hover:text-primary-300">iWatch Repair</a></li>
+            <li><a href="./services.html" class="text-sm text-secondary-200 hover:text-primary-300">AirPods Repair</a></li>
+            <li><a href="./services.html" class="text-sm text-secondary-200 hover:text-primary-300">iPad Repair</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="text-background-50 font-semibold text-sm tracking-wide uppercase">Contact Us</h4>
+          <ul class="mt-5 space-y-4 text-sm text-secondary-200">
+            <li class="flex items-start gap-3"><span class="w-5 h-5 flex items-center justify-center text-primary-400 mt-0.5"><i class="ph ph-map-pin"></i></span><span>17 Jungle Avenue<br>East Legon, Accra, Ghana</span></li>
+            <li class="flex items-center gap-3"><span class="w-5 h-5 flex items-center justify-center text-primary-400"><i class="ph ph-phone"></i></span><a href="tel:+233200039371" class="hover:text-primary-300">+233 20 003 9371</a></li>
+            <li class="flex items-center gap-3"><span class="w-5 h-5 flex items-center justify-center text-primary-400"><i class="ph ph-envelope"></i></span><a href="mailto:hello@wirelessgh.com" class="hover:text-primary-300">hello@wirelessgh.com</a></li>
+            <li class="flex items-start gap-3"><span class="w-5 h-5 flex items-center justify-center text-primary-400 mt-0.5"><i class="ph ph-clock"></i></span><span>Mon–Fri: 9:00 AM – 7:00 PM<br>Sat: 10:00 AM – 5:00 PM<br>Sun: Closed</span></li>
+          </ul>
+        </div>
+      </div>
+      <div class="mt-12 pt-6 border-t border-secondary-800 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-secondary-300">
+        <p>© 2026 Wireless. All rights reserved.</p>
+        <div class="flex items-center gap-5">
+          <a href="#" class="hover:text-primary-300">Privacy Policy</a>
+          <a href="#" class="hover:text-primary-300">Terms of Service</a>
+          <a href="#" class="hover:text-primary-300">Warranty</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</div>
+
+<script type="module" src="./assets/js/main.js"></script>
+</body>
+</html>

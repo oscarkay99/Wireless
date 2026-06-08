@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Leads Dashboard — Wireless Admin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css">
+  <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/fill/style.css">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; font-family: Inter, ui-sans-serif, system-ui, sans-serif; background: #0a0a0a; color: #e5e5e5; }
+
+    /* ── Admin login gate ── */
+    #admin-gate {
+      position: fixed; inset: 0; background: #0a0a0a;
+      display: flex; align-items: center; justify-content: center;
+      z-index: 999; padding: 1.5rem;
+    }
+    .gate-card {
+      width: 100%; max-width: 380px;
+      background: #111; border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 16px; padding: 2rem;
+    }
+    .gate-logo { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1.75rem; }
+    .gate-logo img { height: 32px; }
+    .gate-logo span { font-weight: 700; font-size: 1.1rem; color: #fff; text-transform: lowercase; letter-spacing: -0.03em; }
+    .gate-title { font-size: 1.1rem; font-weight: 700; color: #fff; margin-bottom: 0.25rem; }
+    .gate-sub { font-size: 0.8rem; color: rgba(255,255,255,0.35); margin-bottom: 1.25rem; }
+    .gate-input {
+      width: 100%; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 8px; padding: 0.7rem 0.9rem; color: #fff; font-size: 0.875rem;
+      font-family: inherit; outline: none; margin-bottom: 0.75rem;
+    }
+    .gate-input:focus { border-color: rgba(204,0,0,0.5); }
+    .gate-input::placeholder { color: rgba(255,255,255,0.2); }
+    .gate-error { font-size: 0.78rem; color: #ff6666; margin-bottom: 0.6rem; display: none; }
+    .gate-error.visible { display: block; }
+    .gate-btn {
+      width: 100%; background: #CC0000; color: #fff; font-weight: 600; font-size: 0.875rem;
+      padding: 0.75rem; border: none; border-radius: 8px; cursor: pointer; font-family: inherit;
+    }
+    .gate-btn:hover { background: #aa0000; }
+
+    /* ── Dashboard ── */
+    #dashboard { display: none; min-height: 100vh; }
+
+    .topbar {
+      background: #111; border-bottom: 1px solid rgba(255,255,255,0.07);
+      padding: 0.875rem 1.5rem; display: flex; align-items: center; justify-content: space-between;
+      position: sticky; top: 0; z-index: 50;
+    }
+    .topbar-left { display: flex; align-items: center; gap: 0.75rem; }
+    .topbar-left img { height: 28px; }
+    .topbar-title { font-weight: 700; color: #fff; font-size: 0.9rem; }
+    .topbar-right { display: flex; align-items: center; gap: 0.75rem; }
+    .badge-admin {
+      background: rgba(204,0,0,0.15); color: #ff5555;
+      border: 1px solid rgba(204,0,0,0.25); border-radius: 9999px;
+      font-size: 0.72rem; font-weight: 600; padding: 0.2rem 0.65rem;
+    }
+    .btn-sm {
+      background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.1);
+      color: rgba(255,255,255,0.75); font-size: 0.78rem; font-weight: 500;
+      padding: 0.35rem 0.8rem; border-radius: 6px; cursor: pointer; font-family: inherit;
+      display: flex; align-items: center; gap: 0.35rem;
+    }
+    .btn-sm:hover { background: rgba(255,255,255,0.12); }
+    .btn-sm.red { background: rgba(204,0,0,0.1); border-color: rgba(204,0,0,0.2); color: #ff6666; }
+    .btn-sm.red:hover { background: rgba(204,0,0,0.18); }
+
+    .main { padding: 1.75rem 1.5rem; max-width: 1100px; margin: 0 auto; }
+
+    .stats-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 1rem; margin-bottom: 1.75rem; }
+    .stat-card {
+      background: #111; border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 12px; padding: 1.1rem 1.25rem;
+    }
+    .stat-label { font-size: 0.75rem; color: rgba(255,255,255,0.4); font-weight: 500; margin-bottom: 0.4rem; }
+    .stat-val { font-size: 1.8rem; font-weight: 700; color: #fff; line-height: 1; }
+    .stat-val.red { color: #CC0000; }
+
+    .section-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1rem; }
+    .section-title { font-size: 0.95rem; font-weight: 600; color: #fff; }
+
+    .search-input {
+      background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.09);
+      border-radius: 7px; padding: 0.45rem 0.85rem; color: #fff; font-size: 0.8rem;
+      font-family: inherit; outline: none; width: 220px;
+    }
+    .search-input::placeholder { color: rgba(255,255,255,0.25); }
+    .search-input:focus { border-color: rgba(204,0,0,0.4); }
+
+    .table-wrap {
+      background: #111; border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 12px; overflow: hidden;
+    }
+    table { width: 100%; border-collapse: collapse; font-size: 0.82rem; }
+    thead th {
+      padding: 0.7rem 1rem; text-align: left;
+      font-size: 0.72rem; font-weight: 600; color: rgba(255,255,255,0.4);
+      letter-spacing: 0.06em; text-transform: uppercase;
+      background: rgba(255,255,255,0.03); border-bottom: 1px solid rgba(255,255,255,0.07);
+    }
+    tbody tr { border-bottom: 1px solid rgba(255,255,255,0.05); transition: background 0.1s; }
+    tbody tr:last-child { border-bottom: none; }
+    tbody tr:hover { background: rgba(255,255,255,0.03); }
+    td { padding: 0.8rem 1rem; color: rgba(255,255,255,0.8); vertical-align: middle; }
+    td.muted { color: rgba(255,255,255,0.35); }
+
+    .avatar-cell { display: flex; align-items: center; gap: 0.65rem; }
+    .av { width: 30px; height: 30px; border-radius: 50%; background: #CC0000; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; font-weight: 700; color: #fff; flex-shrink: 0; }
+
+    #empty-state { display: none; padding: 3rem 1rem; text-align: center; color: rgba(255,255,255,0.3); }
+    #empty-state i { font-size: 2rem; margin-bottom: 0.75rem; display: block; }
+
+    .footer { padding: 1rem 1.5rem; font-size: 0.72rem; color: rgba(255,255,255,0.2); text-align: center; border-top: 1px solid rgba(255,255,255,0.06); }
+  </style>
+</head>
+<body>
+
+<!-- Admin gate -->
+<div id="admin-gate">
+  <div class="gate-card">
+    <div class="gate-logo">
+      <img src="./assets/images/logo-mark.png" alt="">
+      <span>wireless admin</span>
+    </div>
+    <div class="gate-title">Owner Access</div>
+    <div class="gate-sub">Enter your admin password to view leads.</div>
+    <div class="gate-error" id="gate-error">Incorrect password. Try again.</div>
+    <input type="password" id="admin-pw" class="gate-input" placeholder="Admin password" autocomplete="off">
+    <button class="gate-btn" id="gate-btn">Unlock Dashboard</button>
+  </div>
+</div>
+
+<!-- Dashboard -->
+<div id="dashboard">
+  <div class="topbar">
+    <div class="topbar-left">
+      <img src="./assets/images/logo-mark.png" alt="">
+      <span class="topbar-title">Wireless</span>
+      <span class="badge-admin">Admin</span>
+    </div>
+    <div class="topbar-right">
+      <button class="btn-sm" id="export-btn"><i class="ph ph-download-simple"></i> Export CSV</button>
+      <button class="btn-sm red" id="admin-logout"><i class="ph ph-sign-out"></i> Lock</button>
+    </div>
+  </div>
+
+  <div class="main">
+    <div class="stats-row">
+      <div class="stat-card">
+        <div class="stat-label">Total Leads</div>
+        <div class="stat-val red" id="stat-total">0</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Today</div>
+        <div class="stat-val" id="stat-today">0</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">This Week</div>
+        <div class="stat-val" id="stat-week">0</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">This Month</div>
+        <div class="stat-val" id="stat-month">0</div>
+      </div>
+    </div>
+
+    <div class="section-header">
+      <span class="section-title">All Leads</span>
+      <input type="search" class="search-input" id="search" placeholder="Search by name or email…">
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Signed up</th>
+          </tr>
+        </thead>
+        <tbody id="leads-body"></tbody>
+      </table>
+      <div id="empty-state"><i class="ph ph-users"></i>No leads yet. Share the site and watch them roll in!</div>
+    </div>
+  </div>
+
+  <div class="footer">Wireless Admin Dashboard · Data stored locally · Connect Supabase to sync across devices</div>
+</div>
+
+<script type="module">
+  import { getAllLeads } from './assets/js/auth.js';
+
+  const ADMIN_PW = 'wireless2024';
+  const SESSION_KEY = 'wireless_admin_session';
+
+  function unlock() {
+    sessionStorage.setItem(SESSION_KEY, '1');
+    document.getElementById('admin-gate').style.display = 'none';
+    document.getElementById('dashboard').style.display = 'block';
+    renderDashboard();
+  }
+
+  // Auto-unlock if already authenticated this session
+  if (sessionStorage.getItem(SESSION_KEY)) unlock();
+
+  document.getElementById('gate-btn').addEventListener('click', () => {
+    const pw = document.getElementById('admin-pw').value;
+    if (pw === ADMIN_PW) {
+      unlock();
+    } else {
+      document.getElementById('gate-error').classList.add('visible');
+      document.getElementById('admin-pw').value = '';
+    }
+  });
+  document.getElementById('admin-pw').addEventListener('keydown', e => {
+    if (e.key === 'Enter') document.getElementById('gate-btn').click();
+  });
+
+  document.getElementById('admin-logout').addEventListener('click', () => {
+    sessionStorage.removeItem(SESSION_KEY);
+    location.reload();
+  });
+
+  function renderDashboard() {
+    const leads = getAllLeads().reverse(); // newest first
+    updateStats(leads);
+    renderTable(leads);
+
+    document.getElementById('search').addEventListener('input', e => {
+      const q = e.target.value.toLowerCase();
+      const filtered = leads.filter(l =>
+        `${l.firstName} ${l.lastName}`.toLowerCase().includes(q) ||
+        l.email.toLowerCase().includes(q) ||
+        (l.phone || '').includes(q)
+      );
+      renderTable(filtered);
+    });
+
+    document.getElementById('export-btn').addEventListener('click', () => exportCSV(leads));
+  }
+
+  function updateStats(leads) {
+    const now = new Date();
+    const todayStr  = now.toISOString().slice(0, 10);
+    const weekAgo   = new Date(now - 7  * 86400000);
+    const monthAgo  = new Date(now - 30 * 86400000);
+
+    document.getElementById('stat-total').textContent = leads.length;
+    document.getElementById('stat-today').textContent = leads.filter(l => l.createdAt.startsWith(todayStr)).length;
+    document.getElementById('stat-week').textContent  = leads.filter(l => new Date(l.createdAt) >= weekAgo).length;
+    document.getElementById('stat-month').textContent = leads.filter(l => new Date(l.createdAt) >= monthAgo).length;
+  }
+
+  function renderTable(leads) {
+    const tbody = document.getElementById('leads-body');
+    const empty = document.getElementById('empty-state');
+
+    if (!leads.length) {
+      tbody.innerHTML = '';
+      empty.style.display = 'block';
+      return;
+    }
+    empty.style.display = 'none';
+
+    tbody.innerHTML = leads.map((l, i) => {
+      const initials = (l.firstName[0] + (l.lastName[0] || '')).toUpperCase();
+      const date = new Date(l.createdAt);
+      const dateStr = date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+      const timeStr = date.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
+      return `
+        <tr>
+          <td class="muted">${leads.length - i}</td>
+          <td>
+            <div class="avatar-cell">
+              <div class="av">${initials}</div>
+              <span>${l.firstName} ${l.lastName}</span>
+            </div>
+          </td>
+          <td>${l.email}</td>
+          <td>${l.phone || '—'}</td>
+          <td class="muted">${dateStr} · ${timeStr}</td>
+        </tr>`;
+    }).join('');
+  }
+
+  function exportCSV(leads) {
+    const rows = [['#', 'First Name', 'Last Name', 'Email', 'Phone', 'Signed Up']];
+    leads.forEach((l, i) => rows.push([
+      leads.length - i,
+      l.firstName, l.lastName, l.email, l.phone || '',
+      new Date(l.createdAt).toLocaleString()
+    ]));
+    const csv = rows.map(r => r.map(v => `"${String(v).replace(/"/g, '""')}"`).join(',')).join('\n');
+    const a = document.createElement('a');
+    a.href = 'data:text/csv;charset=utf-8,' + encodeURIComponent(csv);
+    a.download = `wireless-leads-${new Date().toISOString().slice(0,10)}.csv`;
+    a.click();
+  }
+</script>
+</body>
+</html>

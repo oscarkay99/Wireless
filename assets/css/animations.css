@@ -1,0 +1,42 @@
+/* ─── Brand logo component ─────────────────────────────────────── */
+.brand-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  text-decoration: none;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+/* SVG mark is self-contained — no extra CSS needed */
+
+.brand-logo__word {
+  font-family: var(--font-body), ui-sans-serif, system-ui, sans-serif;
+  font-weight: 700;
+  font-size: 1.1rem;
+  letter-spacing: -0.03em;
+  color: #ffffff;
+  text-transform: lowercase;
+}
+
+/* ─── Scroll-reveal base — hidden + translated ─────────────────── */
+/* Scroll-reveal base — hidden + translated */
+.reveal-left,
+.reveal-right,
+.reveal-up {
+  opacity: 0;
+  transition: opacity 0.65s ease-out, transform 0.65s ease-out;
+  transition-delay: var(--reveal-delay, 0ms);
+}
+
+.reveal-left  { transform: translateX(-56px); }
+.reveal-right { transform: translateX(56px); }
+.reveal-up    { transform: translateY(36px); }
+
+/* Triggered state */
+.reveal-left.is-visible,
+.reveal-right.is-visible,
+.reveal-up.is-visible {
+  opacity: 1;
+  transform: translate(0, 0);
+}
