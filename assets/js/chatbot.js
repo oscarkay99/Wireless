@@ -351,7 +351,7 @@ export function initChatbot() {
         bottom: calc(100% + 0.75rem);
         right: 0;
         left: auto;
-        width: calc(100vw - 2rem - 5cm);
+        width: 270px;
         max-height: 60svh;
         margin: 0;
       }
