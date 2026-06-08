@@ -22,6 +22,7 @@
       .map-layout     { grid-template-columns:1fr; }
     }
     @media(max-width:767px){
+      .contact-hero { padding-top:6rem !important; padding-bottom:2.5rem !important; }
       .contact-form-row { grid-template-columns:1fr; gap:1rem; }
       .contact-map { height:320px !important; }
       .contact-cta-actions a { width:100%; justify-content:center; }
@@ -81,7 +82,7 @@
   <main>
 
     <!-- PAGE HERO -->
-    <section class="relative bg-foreground-950 overflow-hidden" style="padding-top:10rem;padding-bottom:5rem;">
+    <section class="contact-hero relative bg-foreground-950 overflow-hidden" style="padding-top:10rem;padding-bottom:5rem;">
       <div class="absolute inset-0 bg-cover bg-center" style="background-image:url('./assets/images/hero-bg.jpg');opacity:0.12;"></div>
       <div class="absolute inset-0 bg-gradient-to-b from-foreground-950/80 to-foreground-950/95"></div>
       <div class="relative z-10 mx-auto max-w-7xl px-4 md:px-8">
