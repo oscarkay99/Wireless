@@ -352,8 +352,8 @@ export function initChatbot() {
         left: 0;
         right: 0;
         width: auto;
-        height: 88svh;
-        max-height: 88svh;
+        height: 60svh;
+        max-height: 60svh;
         margin: 0;
         border-radius: 20px 20px 0 0;
         border-left: none;
