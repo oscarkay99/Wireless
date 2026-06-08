@@ -347,13 +347,14 @@ export function initChatbot() {
       }
       /* Floating card above the toggle button */
       #cw-window.is-open {
-        position: absolute;
-        bottom: calc(100% + 0.75rem);
-        right: 0;
+        position: fixed;
+        bottom: 5.5rem;
+        right: 1rem;
         left: auto;
         width: 270px;
         max-height: 60svh;
         margin: 0;
+        z-index: 10000;
       }
       #cw-messages {
         min-height: 0;
