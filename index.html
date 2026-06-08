@@ -13,6 +13,28 @@
   <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/fill/style.css">
   <link rel="stylesheet" href="./assets/css/styles.css">
   <link rel="stylesheet" href="./assets/css/animations.css">
+  <style>
+    @media (max-width: 767px) {
+      .home-hero {
+        min-height: 760px !important;
+      }
+
+      .home-hero-content {
+        padding: 10rem 1.25rem 4rem !important;
+      }
+
+      .home-stats-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        gap: 1rem !important;
+      }
+
+      .home-services-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+      }
+    }
+  </style>
 </head>
 <body>
 
@@ -67,7 +89,7 @@
   <main>
 
     <!-- HERO -->
-    <section id="home" style="position:relative;width:100%;min-height:900px;display:flex;flex-direction:column;align-items:center;overflow:hidden;">
+    <section id="home" class="home-hero" style="position:relative;width:100%;min-height:900px;display:flex;flex-direction:column;align-items:center;overflow:hidden;">
 
       <!-- Video bg: small negative inset gives parallax room without over-zooming -->
       <div id="hero-bg" style="position:absolute;top:-3%;left:-2%;right:-2%;bottom:-20%;will-change:transform;transform:translateY(0px);">
@@ -81,7 +103,7 @@
       <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0.82) 0%,rgba(0,0,0,0.55) 30%,rgba(0,0,0,0.55) 70%,rgba(0,0,0,0.82) 100%);z-index:1;"></div>
 
       <!-- Content, all colours explicit so compiled CSS isn't a dependency -->
-      <div style="position:relative;z-index:2;width:100%;display:flex;flex-direction:column;align-items:center;padding:14rem 1.5rem 5rem;box-sizing:border-box;">
+      <div class="home-hero-content" style="position:relative;z-index:2;width:100%;display:flex;flex-direction:column;align-items:center;padding:14rem 1.5rem 5rem;box-sizing:border-box;">
 
         <h1 class="font-heading animate-fade-up"
           style="font-size:clamp(2.2rem,6vw,4.5rem);font-weight:600;color:#ffffff;text-align:center;line-height:1.08;letter-spacing:-0.02em;max-width:900px;text-shadow:0 2px 32px rgba(0,0,0,0.8);">
@@ -106,7 +128,7 @@
     <!-- STATS STRIP -->
     <section class="bg-background-50 border-b border-background-200/70">
       <div class="mx-auto max-w-4xl px-4 md:px-8 py-16 md:py-24">
-        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;text-align:center;">
+        <div class="home-stats-grid" style="display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;text-align:center;">
           <div class="reveal-up">
             <div data-count="12500" data-comma class="font-heading text-3xl md:text-4xl font-semibold text-foreground-950 leading-none"><span class="cu-val">12,500</span><span class="text-primary-500">+</span></div>
             <div class="mt-2 text-xs text-foreground-600 tracking-wide">Devices Repaired</div>
@@ -130,7 +152,7 @@
     <!-- SERVICES TEASER -->
     <section class="bg-background-100/40 border-b border-background-200/70">
       <div class="mx-auto max-w-4xl px-4 md:px-8 py-16 md:py-20">
-        <div class="flex items-end justify-between mb-10">
+        <div class="home-services-header flex items-end justify-between mb-10">
           <div class="reveal-left">
             <h2 class="font-heading text-2xl md:text-3xl font-semibold text-foreground-950">What We Repair</h2>
             <p class="mt-2 text-sm text-foreground-600">Expert service for all major devices.</p>

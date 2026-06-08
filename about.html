@@ -13,6 +13,29 @@
   <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/fill/style.css">
   <link rel="stylesheet" href="./assets/css/styles.css">
   <link rel="stylesheet" href="./assets/css/animations.css">
+  <style>
+    @media (max-width: 767px) {
+      .about-story-media {
+        grid-template-columns: 1fr !important;
+      }
+
+      .about-media-offset {
+        margin-top: 0 !important;
+      }
+
+      .about-stats-grid,
+      .about-team-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        gap: 1rem !important;
+      }
+
+      .about-values-grid,
+      .about-testimonials-grid {
+        grid-template-columns: 1fr !important;
+        gap: 1rem !important;
+      }
+    }
+  </style>
 </head>
 <body>
 
@@ -95,11 +118,11 @@
               <a href="./contact.html" class="bg-primary-500 hover:bg-primary-600 text-background-50 font-semibold px-6 py-3 rounded-md text-sm transition-colors inline-flex items-center gap-2">Book a Repair <i class="ph ph-arrow-right"></i></a>
             </div>
           </div>
-          <div class="reveal-right grid grid-cols-2 gap-4">
+          <div class="about-story-media reveal-right grid grid-cols-2 gap-4">
             <div class="rounded-xl overflow-hidden h-48 md:h-60">
               <img src="./assets/images/img(1).jpg" alt="Technician at work" class="w-full h-full object-cover">
             </div>
-            <div class="rounded-xl overflow-hidden h-48 md:h-60 mt-8">
+            <div class="about-media-offset rounded-xl overflow-hidden h-48 md:h-60 mt-8">
               <img src="./assets/images/img(2).jpg" alt="Repair workshop" class="w-full h-full object-cover">
             </div>
             <div class="rounded-xl overflow-hidden h-48 md:h-60" style="position:relative;">
@@ -107,14 +130,14 @@
                 <source src="./assets/videos/75b724a22ba34f8583f8466b67ee756d.mov" type="video/mp4">
               </video>
             </div>
-            <div class="rounded-xl overflow-hidden h-48 md:h-60 mt-8">
+            <div class="about-media-offset rounded-xl overflow-hidden h-48 md:h-60 mt-8">
               <img src="./assets/images/img(4).jpg" alt="Happy customer" class="w-full h-full object-cover">
             </div>
           </div>
         </div>
 
         <!-- STATS ROW -->
-        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;margin-top:4rem;padding-top:4rem;border-top:1px solid oklch(var(--background-200)/.7);">
+        <div class="about-stats-grid" style="display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;margin-top:4rem;padding-top:4rem;border-top:1px solid oklch(var(--background-200)/.7);">
           <div class="text-center reveal-up" style="--reveal-delay:0ms">
             <p data-count="48" data-suffix="k+" class="font-heading text-4xl md:text-5xl font-bold text-primary-600">48k+</p>
             <p class="mt-2 text-sm text-foreground-700 font-medium">Repairs Completed</p>
@@ -143,7 +166,7 @@
           <h2 class="font-heading text-3xl md:text-4xl font-semibold text-foreground-950">What makes us different</h2>
           <p class="mt-3 text-foreground-600 text-sm md:text-base max-w-xl mx-auto">We built Wireless around the things customers actually care about.</p>
         </div>
-        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;" class="reveal-up">
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;" class="about-values-grid reveal-up">
           <div class="bg-background-50 border border-background-200/70 rounded-xl p-7">
             <div class="w-10 h-10 rounded-lg bg-primary-50 border border-primary-100 flex items-center justify-center text-primary-600 mb-5"><i class="ph ph-eye text-lg"></i></div>
             <h3 class="font-heading text-lg font-semibold text-foreground-950">Radical Transparency</h3>
@@ -171,7 +194,7 @@
           <h2 class="font-heading text-3xl md:text-4xl font-semibold text-foreground-950">People behind every repair</h2>
           <p class="mt-3 text-sm text-foreground-600">Certified, experienced, and obsessed with getting repairs right.</p>
         </div>
-        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;" class="reveal-up">
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;" class="about-team-grid reveal-up">
           <div class="text-center">
             <div class="rounded-xl overflow-hidden bg-background-100" style="aspect-ratio:3/4;">
               <img src="./assets/images/img(11).jpg" alt="Marcus Chen" class="w-full h-full object-cover object-top">
@@ -211,7 +234,7 @@
           <span class="inline-flex items-center gap-1.5 text-xs font-semibold tracking-widest uppercase text-primary-600 bg-primary-50 border border-primary-100 px-3 py-1.5 rounded-full mb-4">Reviews</span>
           <h2 class="font-heading text-3xl md:text-4xl font-semibold text-foreground-950">What customers say</h2>
         </div>
-        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;" class="reveal-up">
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;" class="about-testimonials-grid reveal-up">
 
           <div class="bg-background-50 border border-background-200/70 rounded-xl p-6 flex flex-col">
             <i class="ph ph-quotes text-3xl text-primary-200 mb-4"></i>
