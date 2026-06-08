@@ -351,16 +351,23 @@ export function initChatbot() {
         padding-right: 1rem;
         padding-bottom: calc(1rem + env(safe-area-inset-bottom));
       }
-      #cw-window.is-open {
-        position: fixed;
-        inset: 0;
-        width: auto;
-        height: auto;
+      body.cw-chat-open {
+        overflow: hidden;
+      }
+      body.cw-chat-open #cw-widget {
+        top: 0;
+      }
+      body.cw-chat-open #cw-launcher {
+        display: none;
+      }
+      body.cw-chat-open #cw-window.is-open {
+        position: static;
+        width: 100%;
+        height: 100%;
         max-height: none;
         margin: 0;
         border-radius: 0;
         border: none;
-        z-index: 10000;
       }
       #cw-messages {
         padding: 0.85rem;
@@ -437,6 +444,7 @@ export function initChatbot() {
   function openChat() {
     opened = true;
     window_.classList.add('is-open');
+    document.body.classList.add('cw-chat-open');
     openIcon.style.display = 'none';
     closeIcon.style.display = '';
     badge.style.display = 'none';
@@ -461,6 +469,7 @@ export function initChatbot() {
   function closeChat() {
     opened = false;
     window_.classList.remove('is-open');
+    document.body.classList.remove('cw-chat-open');
     openIcon.style.display = '';
     closeIcon.style.display = 'none';
   }
