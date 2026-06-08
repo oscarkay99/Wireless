@@ -166,12 +166,12 @@ function _signupBanner(user) {
   if (!header) return;
   const b = document.createElement('div');
   b.id = 'auth-signup-banner';
-  b.style.cssText = `background:oklch(var(--primary-500));color:#fff;display:flex;align-items:center;justify-content:center;gap:0.6rem;padding:0.45rem 1rem;font-size:0.8rem;font-weight:500;flex-wrap:wrap;border-top:1px solid rgba(255,255,255,0.12);`;
+  b.style.cssText = `background:oklch(var(--primary-500));color:#fff;display:flex;align-items:center;gap:0.5rem;padding:0.45rem 0.75rem;font-size:0.78rem;font-weight:500;border-top:1px solid rgba(255,255,255,0.12);`;
   b.innerHTML = `
     <i class="ph ph-user-circle" style="flex-shrink:0;font-size:1rem;"></i>
-    <span>Create a free account to book, track your repair live &amp; get member deals.</span>
+    <span style="flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">Create a free account to book &amp; track repairs.</span>
     <a href="./signup.html" style="color:#fff;font-weight:700;text-decoration:underline;white-space:nowrap;flex-shrink:0;">Join Free →</a>
-    <button id="_bx" aria-label="Dismiss" style="background:none;border:none;color:#fff;cursor:pointer;margin-left:auto;padding:0 0.2rem;font-size:1.1rem;opacity:0.8;flex-shrink:0;"><i class="ph ph-x"></i></button>`;
+    <button id="_bx" aria-label="Dismiss" style="background:none;border:none;color:#fff;cursor:pointer;padding:0 0.15rem;font-size:1rem;opacity:0.8;flex-shrink:0;"><i class="ph ph-x"></i></button>`;
   header.appendChild(b);
   b.querySelector('#_bx').onclick = () => {
     b.remove();
