@@ -295,7 +295,7 @@
   }
   function clearError() { errBox.classList.remove('visible'); }
 
-  form.addEventListener('submit', e => {
+  form.addEventListener('submit', async e => {
     e.preventDefault();
     clearError();
 
@@ -316,7 +316,7 @@
     btn.disabled = true;
     btn.innerHTML = '<i class="ph ph-circle-notch"></i> Creating account…';
 
-    const result = signup({ firstName, lastName, email, phone, password });
+    const result = await signup({ firstName, lastName, email, phone, password });
 
     if (result.error) {
       btn.disabled = false;
@@ -328,6 +328,12 @@
     const params = new URLSearchParams(location.search);
     const next = sessionStorage.getItem('wl_next');
     sessionStorage.removeItem('wl_next');
+    if (result.needsEmailConfirmation) {
+      btn.disabled = false;
+      btn.innerHTML = '<i class="ph ph-user-plus"></i> Create Account';
+      return showError('Check your email to confirm your account, then sign in to continue.');
+    }
+
     location.href = (params.get('next') === 'booking' || next) ? './contact.html' : './index.html';
   });
 </script>

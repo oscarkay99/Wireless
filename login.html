@@ -158,7 +158,7 @@
   const errMsg = document.getElementById('login-error-msg');
   const btn    = document.getElementById('login-btn');
 
-  form.addEventListener('submit', e => {
+  form.addEventListener('submit', async e => {
     e.preventDefault();
     errBox.classList.remove('visible');
 
@@ -173,7 +173,7 @@
     btn.disabled = true;
     btn.innerHTML = '<i class="ph ph-circle-notch"></i> Signing in…';
 
-    const result = login(email, password);
+    const result = await login(email, password);
 
     if (result.error) {
       btn.disabled = false;
